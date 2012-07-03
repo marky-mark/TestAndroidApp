@@ -28,7 +28,7 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button - Go to google" />
+        android:text="Button - Go to google - via Intent" />
 
     <!---/////////////////////////////////Password wired with a button///////////////////////////////////////////-->
 
@@ -53,6 +53,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_submit" />
+
+    <Button
+        android:id="@+id/buttonUrl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go to http://www.google.com" />
 
 </LinearLayout>
 

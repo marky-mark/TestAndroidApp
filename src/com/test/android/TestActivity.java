@@ -1,6 +1,7 @@
 package com.test.android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ public class TestActivity extends Activity
 {
     private Button button;
 
+    private Button webViewButton;
+
     private EditText edittext;
 
     private EditText password;
@@ -23,6 +26,8 @@ public class TestActivity extends Activity
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
+        final Context context = this;
+
         //defualt needed!
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
@@ -35,6 +40,25 @@ public class TestActivity extends Activity
 
         //Password Submission setup
         addPasswordSubmissionListener();
+
+        //Web View
+        button = (Button) findViewById(R.id.buttonUrl);
+		button.setOnClickListener(new WebViewClickListener(this));
+    }
+
+    public class WebViewClickListener implements View.OnClickListener {
+
+        Context context;
+
+        public WebViewClickListener(Context context) {
+            this.context = context;
+        }
+
+        public void onClick(View view) {
+                Intent browserIntent =
+                            new Intent(context, WebViewActivity.class);
+			    startActivity(browserIntent);
+        }
     }
 
     private void addListenerOnButton() {
