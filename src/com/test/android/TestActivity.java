@@ -3,8 +3,10 @@ package com.test.android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +46,18 @@ public class TestActivity extends Activity
         //Web View
         button = (Button) findViewById(R.id.buttonUrl);
 		button.setOnClickListener(new WebViewClickListener(this));
+
+        //Check if a camera is on the device!
+		PackageManager packageManager = context.getPackageManager();
+
+		// if device support camera?
+		if (packageManager.hasSystemFeature(PackageManager.FEATURE_CAMERA)) {
+			//yes
+			Log.i("camera", "This device has camera!");
+		}else{
+			//no
+			Log.i("camera", "This device has no camera!");
+		}
     }
 
     public class WebViewClickListener implements View.OnClickListener {
