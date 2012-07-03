@@ -4,12 +4,20 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class TestActivity extends Activity
 {
-    Button button;
+    private Button button;
+
+    private EditText edittext;
+
+    private EditText password;
+    private Button passwordSubmitButton;
 
     /** Called when the activity is first created. */
     @Override
@@ -19,11 +27,17 @@ public class TestActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        //TextBox Setup
+        addKeyListener();
+
         //button setup
         addListenerOnButton();
+
+        //Password Submission setup
+        addPasswordSubmissionListener();
     }
 
-    public void addListenerOnButton() {
+    private void addListenerOnButton() {
 
         //find the button
 		button = (Button) findViewById(R.id.button1);
@@ -34,12 +48,61 @@ public class TestActivity extends Activity
 	}
 
     //Test Button Class
-    private class TestClickListener implements View.OnClickListener {
+    public class TestClickListener implements View.OnClickListener {
 
         public void onClick(View view) {
-            			  Intent browserIntent =
+                Intent browserIntent =
                             new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com"));
 			    startActivity(browserIntent);
+        }
+    }
+
+    private void addKeyListener() {
+        // get edittext component
+        edittext = (EditText) findViewById(R.id.editText);
+
+        // add a keylistener to keep track user input
+        edittext.setOnKeyListener(new View.OnKeyListener() {
+
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                // if keydown and "enter" is pressed
+                if ((event.getAction() == KeyEvent.ACTION_DOWN)
+                    && (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
+                    // display a floating message
+                    Toast.makeText(TestActivity.this,
+                            edittext.getText(), Toast.LENGTH_LONG).show();
+                    return true;
+
+                } else if ((event.getAction() == KeyEvent.ACTION_DOWN)
+                    && (keyCode == KeyEvent.KEYCODE_9)) {
+
+                    // display a floating message
+                    Toast.makeText(TestActivity.this,
+                        "Number 9 is pressed!", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+
+                return false;
+            }
+        });
+    }
+
+    private void addPasswordSubmissionListener() {
+
+        password = (EditText) findViewById(R.id.txtPassword);
+
+        passwordSubmitButton = (Button) findViewById(R.id.btnSubmit);
+
+        passwordSubmitButton.setOnClickListener(new PasswordSubmitClickListener());
+    }
+
+    public class PasswordSubmitClickListener implements View.OnClickListener {
+
+        public void onClick(View view) {
+           Toast.makeText(TestActivity.this, password.getText(),
+			Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -4,16 +4,55 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
+
+    <!--////////////////////////////////Add a Color to the text Field/////////////////////////////////////////-->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello"
         android:textColor="@color/string_color"
         />
+
+    <!--/////////////////////////////////////Sample Edit Text/////////////////////////////////////////////////-->
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <requestFocus/>
+
+    </EditText>
+
+    <!--////////////////////////////////////////Sample Button////////////////////////////////////////////////////-->
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button - Go to google" />
+
+    <!---/////////////////////////////////Password wired with a button///////////////////////////////////////////-->
+
+    <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lblPassword"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_submit" />
+
 </LinearLayout>
 
